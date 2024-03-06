@@ -8,6 +8,7 @@ The design files are all available if you would like to assemble your own of cha
 
 https://youtube.com/shorts/amKmFCEE5ls?si=_cqpdNFftW1ooPPc <br/>
 [![Watch the video](https://i.stack.imgur.com/Vp2cE.png)]([https://youtu.be/vt5fpE0bzSY](https://youtube.com/shorts/amKmFCEE5ls?si=_cqpdNFftW1ooPPc))
+[<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55")
 
 ![Hand](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/ba3d8526-d287-444c-90c5-280552fa3a73) <br/>
 ![Back](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/140335cc-d5b3-4149-8417-632e4b00c66d) <br/>
