@@ -6,6 +6,8 @@ Going with the 8-bit bus takes up many more gpio but the S3 has plenty left over
 I hope to continue testing and if all is well, can possibly sell assembled boards on Tindie. It's been years since I've sold projects but this is one of my favourites and something I've always wanted to purchase. <br/>
 The design files are all available if you would like to assemble your own of change the design yourself. <br/>
 
+https://youtube.com/shorts/amKmFCEE5ls?si=_cqpdNFftW1ooPPc <br/>
+
 ![Hand](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/ba3d8526-d287-444c-90c5-280552fa3a73) <br/>
 ![Back](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/140335cc-d5b3-4149-8417-632e4b00c66d) <br/>
 ![Rev2_Components](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/21599616-aa07-453e-aaf3-1c32bfe3a255) <br/>
