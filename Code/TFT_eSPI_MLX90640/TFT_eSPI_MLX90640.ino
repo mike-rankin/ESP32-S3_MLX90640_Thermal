@@ -31,8 +31,7 @@ void setup(void)
   Serial.begin(115200);
   Wire.begin(18,17); //S3 Parallel
   delay(1000);
-  //Wire.setClock(400000); //Increase I2C clock speed to 400kHz
-  Wire.setClock(800000); //Increase I2C clock speed to 400kHz
+  Wire.setClock(800000); //Increase I2C clock speed to 800kHz
 
   //while (!Serial); //Wait for user to open terminal  //Plug into pc or charger issue fixed by commenting out
 
