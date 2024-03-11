@@ -1,16 +1,9 @@
 /*
-0x0000	Black
-0xFFFF	White
-0xBDF7	Light Gray
-0x7BEF	Dark Gray
-0xF800	Red
-0xFFE0	Yellow
-0xFBE0	Orange
-0x79E0	Brown
-0x7E0	Green
-0x7FF	Cyan
-0x1F	Blue
-0xF81F	Pink
+
+ Has to be an older Boards, ESP32 Rev 2.0.11
+ Has to be Library, TFT_eSPI Rev 2.5.34
+ The latest does not work
+
 */
 
 #include <TFT_eSPI.h> 
