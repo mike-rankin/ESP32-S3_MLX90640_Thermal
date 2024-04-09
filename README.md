@@ -1,7 +1,7 @@
 # ESP32-S3_MLX90640_Thermal
 ESP32-S3 Thermal Sensor using an 8-bit bus
 
-
+An assembled and tested board is available at Tindie: https://www.tindie.com/products/miker/esp32-s3-mlx90640-thermal-image-board/
 
 (https://youtube.com/shorts/amKmFCEE5ls?si=_cqpdNFftW1ooPPc")
 
