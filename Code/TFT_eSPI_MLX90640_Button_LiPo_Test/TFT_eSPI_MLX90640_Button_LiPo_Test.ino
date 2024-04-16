@@ -1,7 +1,6 @@
 /*
-
- Has to be an older Boards, ESP32 Rev 2.0.11
- Has to be Library, TFT_eSPI Rev 2.5.34
+ Huge thank you to Uspizig for offering this library that I have modified for TFT_eSPI: https://github.com/Uspizig/MLX90640
+ Has to be Library, TFT_eSPI Rev 2.5.43
  The latest does not work
 
 */
@@ -11,29 +10,43 @@
 #include <Wire.h>
 #include "MLX90640_API.h"
 #include "MLX90640_I2C_Driver.h"
+#include "Adafruit_MAX1704X.h"
 
 #define TA_SHIFT 8 //Default shift for MLX90640 in open air
+
+const int buttonPin1 = 10;  
+const int buttonPin2 = 11; 
+int buttonState1 = 0;  
+int buttonState2 = 0;  
 
 const byte MLX90640_address = 0x33;
 static float mlx90640To[768];
 paramsMLX90640 mlx90640;
+Adafruit_MAX17048 maxlipo;
 
-int xPos, yPos;                                // Abtastposition
-int R_colour, G_colour, B_colour;              // RGB-Farbwert
-int i, j;                                      // Zählvariable
-float T_max, T_min;                            // maximale bzw. minimale gemessene Temperatur
-float T_center;   
+int xPos, yPos;                              
+int R_colour, G_colour, B_colour;            
+int i, j;                                    
+float T_max, T_min;                            
+float T_center;  
 
-TFT_eSPI tft = TFT_eSPI();  // Invoke library, pins defined in User_Setup.h
+unsigned long previousMillis = 0; 
+const long interval = 1000;
+
+TFT_eSPI tft = TFT_eSPI();  
 
 void setup(void)
  {
   Serial.begin(115200);
   Wire.begin(18,17); //S3 Parallel
   delay(1000);
-  Wire.setClock(800000); //Increase I2C clock speed to 800kHz
 
-  //while (!Serial); //Wait for user to open terminal  //Plug into pc or charger issue fixed by commenting out
+  pinMode(buttonPin1, INPUT);
+  pinMode(buttonPin2, INPUT);
+
+  maxlipo.begin();
+  //Wire.setClock(400000); //Increase I2C clock speed to 400kHz
+  Wire.setClock(800000); //Increase I2C clock speed to 400kHz
 
   Serial.println("MLX90640 IR Array Example");
   
@@ -44,7 +57,6 @@ void setup(void)
   } 
     
   Serial.println("MLX90640 online!");
-  //Get device parameters - We only have to do this once
   int status;
   uint16_t eeMLX90640[832];
     
@@ -71,13 +83,10 @@ void setup(void)
   //MLX90640_SetRefreshRate(MLX90640_address, 0x06); //Set rate to 16Hz effective - fails
   //MLX90640_SetRefreshRate(MLX90640_address, 0x07); //Set rate to 32Hz effective - fails
 
-
   tft.init();
   tft.setRotation(3);
   tft.fillScreen(TFT_BLACK);
-  //tft.setTextColor(TFT_YELLOW, TFT_BLACK); // Note: the new fonts do not draw the background colour
 
-  
   // draw the colour-scale
   for (i = 0; i < 181; i++)
   {
@@ -90,9 +99,53 @@ void setup(void)
 
 void loop() 
 {
-  //tft.setTextColor(TFT_GREEN, TFT_BLACK);
-  //tft.setCursor (8, 52);
-  //tft.print("Test"); // This uses the standard ADAFruit small font
+  unsigned long currentMillis = millis();
+ 
+  // read the state of the pushbutton value:
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
+
+  if (buttonState1 == HIGH) 
+  {
+   tft.setTextColor(TFT_WHITE, TFT_BLACK); 
+   tft.setTextSize(1);
+   tft.setCursor (5, 180);
+   tft.print("*");
+  }
+
+  if (buttonState2 == HIGH) 
+  {
+   tft.setTextColor(TFT_WHITE, TFT_BLACK); 
+   tft.setTextSize(1);
+   tft.setCursor (5, 50);
+   tft.print("*");
+  }
+
+  if (buttonState1 == LOW && buttonState2 == LOW) 
+  {
+   tft.setTextColor(TFT_WHITE, TFT_BLACK); 
+   tft.setTextSize(1);
+   tft.setCursor (5, 180);
+   tft.print(" ");
+   tft.setCursor (5, 50);
+   tft.print(" ");
+  } 
+
+
+
+  if (currentMillis - previousMillis >= interval)
+   {
+    previousMillis = currentMillis;
+    tft.setTextSize(1);
+    tft.setTextColor(TFT_WHITE, TFT_BLACK);
+    //drawRoundRect(int32_t x, int32_t y, int32_t w, int32_t h, int32_t radius, uint32_t color),
+    //tft.drawRoundRect(190, 5, 5, 5, 3, TFT_WHITE),
+    tft.setCursor (210, 8);
+    tft.print(maxlipo.cellVoltage());
+    tft.print("V");   
+   }
+
+    tft.setRotation(3);
 
    for (byte x = 0 ; x < 2 ; x++) //Read both subpages
        {
@@ -148,74 +201,35 @@ void loop()
            }
        }
 
-
     // determine T_center
     // ==================
 
     T_center = mlx90640To[11* 32 + 15];    
 
     // drawing the picture
-    // ===================
-
     for (i = 0 ; i < 24 ; i++)
-       {
-        for (j = 0; j < 32; j++)
-           {
-            mlx90640To[i*32 + j] = 180.0 * (mlx90640To[i*32 + j] - T_min) / (T_max - T_min);
-                       
-            getColour(mlx90640To[i*32 + j]);
-            
-            //tft.fillRect(217 - j * 7, 35 + i * 7, 7, 7, tft.color565(R_colour, G_colour, B_colour));
-            tft.fillRect(235 - j * 7, 35 + i * 7, 7, 7, tft.color565(R_colour, G_colour, B_colour));  //On the S3 board
-            //tft.fillRect(297 - j * 7, 35 + i * 7, 7, 7, tft.color565(R_colour, G_colour, B_colour));//großes Bild
-            //tft.fillRect(267 - j * 7, 35 + i * 7, 7, 7, tft.color565(R_colour, G_colour, B_colour));//großes Bild
-            //tft.fillRect(300 - j * 7, 35 + i * 7, 7, 7, tft.color565(R_colour, G_colour, B_colour));//großes Bild
-           }
-       }
+    {
+      for (j = 0; j < 32; j++)
+      {
+       mlx90640To[i*32 + j] = 180.0 * (mlx90640To[i*32 + j] - T_min) / (T_max - T_min);         
+       getColour(mlx90640To[i*32 + j]);
+       tft.fillRect(235 - j * 7, 35 + i * 7, 7, 7, tft.color565(R_colour, G_colour, B_colour));  
+      }
+    }
 
-    //Fadenkreuz
     tft.drawLine(235 - 15*7 + 3.5 - 5, 11*7 + 35 + 3.5, 235 - 15*7 + 3.5 + 5, 11*7 + 35 + 3.5, tft.color565(255, 255, 255));
     tft.drawLine(235 - 15*7 + 3.5, 11*7 + 35 + 3.5 - 5, 235 - 15*7 + 3.5, 11*7 + 35 + 3.5 + 5,  tft.color565(255, 255, 255));
-    //tft.drawLine(287 - 15*7 + 3.5 - 5, 11*7 + 35 + 3.5, 287 - 15*7 + 3.5 + 5, 11*7 + 35 + 3.5, tft.color565(255, 255, 255));
-    //tft.drawLine(287 - 15*7 + 3.5, 11*7 + 35 + 3.5 - 5, 287 - 15*7 + 3.5, 11*7 + 35 + 3.5 + 5,  tft.color565(255, 255, 255));
- 
-    //tft.fillRect(260, 25, 37, 10, tft.color565(0, 0, 0));
-    //tft.fillRect(260, 205, 37, 10, tft.color565(0, 0, 0));    
-    //tft.fillRect(115, 220, 37, 10, tft.color565(0, 0, 0));    
-
-    //tft.setTextColor(TFT_WHITE, tft.color565(0, 0, 0));
-    //tft.setCursor(265, 25);//tft.setCursor(265, 25);
-    //tft.print(T_max, 1);
-    //tft.setCursor(265, 205);//tft.setCursor(265, 205);
-    //tft.print(T_min, 1);
     tft.setCursor(120, 220);
     tft.print(T_center, 1);
 
-    //tft.setCursor(300, 25);//tft.setCursor(300, 25);//T Max Oben
-    //tft.print("C");
-    //tft.setCursor(300, 205);//tft.setCursor(300, 205); //TMin unten
-    //tft.print("C");
-    tft.setCursor(155, 220);//TFadenkreuz
+    tft.setTextColor(TFT_WHITE, TFT_BLACK); 
+    tft.setCursor(155, 220);
     tft.print("C");
 
-    //Skala rechts
-    /*tft.setCursor(300, 55);//tft.setCursor(300, 25);
-    tft.print("300");
-    tft.setCursor(300, 85);//tft.setCursor(300, 25);
-    tft.print("200");
-    tft.setCursor(300, 115);//tft.setCursor(300, 25);
-    tft.print("150");
-    tft.setCursor(300, 145);//tft.setCursor(300, 25);
-    tft.print("100");
-    tft.setCursor(300, 175);//tft.setCursor(300, 25);
-    tft.print("50");
-    */
-    tft.setCursor(80, 210);//warum sooo weit links
+    tft.setCursor(80, 210);
     tft.print("ESP32-S3 Parallel Bus");
-    
     delay(20);
 }
-
 
 // ===============================
 // ===== determine the colour ====
@@ -264,20 +278,14 @@ void getColour(int j)
         G_colour = 235 + (20.0/30.0) * (j - 150.0);
         B_colour = 0 + 255.0/30.0 * (j - 150.0);
        }
-
    }
    
-
-
-
 //Returns true if the MLX90640 is detected on the I2C bus
 boolean isConnected()
    {
     Wire.beginTransmission((uint8_t)MLX90640_address);
-  
     if (Wire.endTransmission() != 0)
-       return (false); //Sensor did not ACK
-    
+    return (false); 
     return (true);
    }   
    
