@@ -7,7 +7,12 @@ This project has gone through several revisions over several months. This latest
 
 **Hardware used on this board <br/>**
 -Processor (ESP32-S3FN8)<br/>
--1.69" LCD (https://www.buydisplay.com/1-69-inch-color-280x240-round-rectangle-ips-tft-lcd-display-panel-st7789) <br/>
+-1.69" LCD (https://www.buydisplay.com/1-69-inch-color-280x240-round-rectangle-ips-tft-lcd-display-panel-st7789)<br/>
+-3.3V LDO (HT7833)<br/>
+-LiPo charger (MCP73831T-2ACI)<br/>
+-LiPo connector (1.25mm JST type)<br/>
+-Thermal Sensor (MLX90640ESF-BAB-000-TU)<br/>
+-LiPo battery monitor (MAX17048G+)<br/>
 
 
 Going with the 8-bit bus takes up many more gpio but the S3 has plenty left over. Right now the image sensor and LiPo monitor are on the same i2c bus. Two right angle pushbuttons are on one side if needed and two small vertical ones needed when first powering up the board to bring up the com port. When first plugged in the com port will appear and disappear over and over. Holding down the boot button (B) and tapping the reset (R) button once sorts this out. The original sketch here: https://github.com/Uspizig/MLX90640 was very helpful in getting things up and running. It has since been modified to use the TFT_eSPI library needed for the 8-bit bus. <br/>
@@ -21,7 +26,7 @@ The design files are all available if you would like to assemble your own of cha
 **-Upload your sketch<br/>**
 <br/>
 **Where do I get a battery?<br/>**
-**-Source a 300mAh to 500mAh LiPo with a 1.25mm battery from Aliexpress. Just make sure the positive and negative wires are in the correct locations. If not, they can be removed by lifting the tab and swapping around<br/>**
+**-Source a 300mAh to 500mAh LiPo with a 1.25mm battery from Aliexpress. Just make sure the positive and negative wires are in the correct locations as noted on the board. If not, they can be removed by lifting the tab and swapping around<br/>**
 <br/>
 **Why does my battery never charge?<br/>**
 **-The charger cannot power the board and charge the battery at the same time. To properly charge the battery turn the device off and leave the USB-C plugged in. The red light will go off once charged<br/>**
