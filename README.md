@@ -12,7 +12,7 @@ The design files are all available if you would like to assemble your own of cha
 
 ![Hand](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/ba3d8526-d287-444c-90c5-280552fa3a73) <br/>
 ![Back](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/140335cc-d5b3-4149-8417-632e4b00c66d) <br/>
-![Rev2_Components](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/21599616-aa07-453e-aaf3-1c32bfe3a255) <br/>
+![Rev3_Components](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/7aa49093-eb51-410e-9361-4884b0d71cc6) <br/>
 ![Size](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/a2fc3894-5fc3-46e2-a023-1946b68b1cbc) <br/>
 ![Front](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/3b73e65f-1645-44f8-9601-684ffbde1dd9)
 
