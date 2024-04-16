@@ -3,6 +3,8 @@
 An assembled and tested board is available at Tindie: https://www.tindie.com/products/miker/esp32-s3-mlx90640-thermal-image-board/<br/>
 
 This project uses an ESP32-S3 processor allowing everything to fit on the backside of a 1.69" screen. An 8-bit bus improves the refresh dramatically over traditional spi displays.<br/>
+<br/>
+<br/>
 **Hardware used on this board <br/>**
 -Processor (ESP32-S3FN8)<br/>
 -1.69" LCD (https://www.buydisplay.com/1-69-inch-color-280x240-round-rectangle-ips-tft-lcd-display-panel-st7789) <br/>
