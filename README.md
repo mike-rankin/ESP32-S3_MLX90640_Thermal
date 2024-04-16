@@ -11,13 +11,13 @@ I hope to continue testing and if all is well, can possibly sell assembled board
 The design files are all available if you would like to assemble your own of change the design yourself. <br/>
 
 **FAQ** <br/> 
-How do I updload my own sketch? <br/>
--Plug the board into your pc. If your com port appears and disappears over and over, hold down the B (Boot button), tap on the R (Reset) button, let go of the Boot button. This should hold the com port <br/>
--Install the latest Arduino IDE, install the ESP32 Board libraries, Install the sensor libraries, Install an older TFT_eSPI library 2.5.43 or compile issues may appear, delete the User_Setup.h and User_Setup_Select.h files and replace with mine <br/>
--Upload your sketch <br/>
+**How do I updload my own sketch?** <br/>
+**-Plug the board into your pc. If your com port appears and disappears over and over, hold down the B (Boot button), tap on the R (Reset) button, let go of the Boot button. This should hold the com port** <br/>
+**-Install the latest Arduino IDE, install the ESP32 Board libraries, Install the sensor libraries, Install an older TFT_eSPI library 2.5.43 or compile issues may appear, delete the User_Setup.h and User_Setup_Select.h files and replace with mine** <br/>
+**-Upload your sketch** <br/>
 
-Where do I get a battery?  <br/>
--Source a 300mAh to 500mAh LiPo with a 1.25mm battery from Aliexpress. Just make sure the positive and negative wires are in the correct locations. If not, they can be removed by lifting the tab and swapping around.
+**Where do I get a battery?**  <br/>
+**-Source a 300mAh to 500mAh LiPo with a 1.25mm battery from Aliexpress. Just make sure the positive and negative wires are in the correct locations. If not, they can be removed by lifting the tab and swapping around** <br/>
 
 
 ![Hand](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/ba3d8526-d287-444c-90c5-280552fa3a73) <br/>
