@@ -10,7 +10,7 @@ Going with the 8-bit bus takes up many more gpio but the S3 has plenty left over
 I hope to continue testing and if all is well, can possibly sell assembled boards on Tindie. It's been years since I've sold projects but this is one of my favourites and something I've always wanted to purchase. <br/>
 The design files are all available if you would like to assemble your own of change the design yourself. <br/>
 
-FAQ <br/>
+**FAQ** <br/> 
 How do I updload my own sketch? <br/>
 -Plug the board into your pc. If your com port appears and disappears over and over, hold down the B (Boot button), tap on the R (Reset) button, let go of the Boot button. This should hold the com port <br/>
 -Install the latest Arduino IDE, install the ESP32 Board libraries, Install the sensor libraries, Install an older TFT_eSPI library 2.5.43 or compile issues may appear, delete the User_Setup.h and User_Setup_Select.h files and replace with mine <br/>
