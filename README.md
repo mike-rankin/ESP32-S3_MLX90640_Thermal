@@ -2,9 +2,9 @@
 
 An assembled and tested board is available at Tindie: https://www.tindie.com/products/miker/esp32-s3-mlx90640-thermal-image-board/<br/>
 
-This project uses an ESP32-S3 processor allowing everything to fit on the backside of a 1.69" screen. An 8-bit bus improves the refresh dramatically over traditional spi displays.<br/>
+This project has gone through several revisions over several months. This latest uses a pcb track antenna instead of the chip type. Tuning has gone well and it seems to perform well. This version uses an ESP32-S3 processor allowing everything to fit on the backside of a 1.69" screen. An 8-bit bus improves the refresh dramatically over traditional spi displays. It is powered by a USB-C connector or small LiPO battery<br/>
 <br/>
-<br/>
+
 **Hardware used on this board <br/>**
 -Processor (ESP32-S3FN8)<br/>
 -1.69" LCD (https://www.buydisplay.com/1-69-inch-color-280x240-round-rectangle-ips-tft-lcd-display-panel-st7789) <br/>
@@ -19,10 +19,12 @@ The design files are all available if you would like to assemble your own of cha
 **-Plug the board into your pc. If your com port appears and disappears over and over, hold down the B (Boot button), tap on the R (Reset) button, let go of the Boot button. This should hold the com port<br/>**
 **-Install the latest Arduino IDE, install the ESP32 Board libraries, Install the sensor libraries, Install an older TFT_eSPI library 2.5.43 or compile issues may appear, delete the User_Setup.h and User_Setup_Select.h files and replace with mine<br/>**
 **-Upload your sketch<br/>**
-
+<br/>
 **Where do I get a battery?<br/>**
 **-Source a 300mAh to 500mAh LiPo with a 1.25mm battery from Aliexpress. Just make sure the positive and negative wires are in the correct locations. If not, they can be removed by lifting the tab and swapping around<br/>**
 <br/>
+**Why does my battery never charge?<br/>**
+**-The charger cannot power the board and charge the battery at the same time. To properly charge the battery turn the device off and leave the USB-C plugged in. The red light will go off once charged<br/>**
 <br/>
 (https://youtube.com/shorts/amKmFCEE5ls?si=_cqpdNFftW1ooPPc") <br/>
 <br/>
