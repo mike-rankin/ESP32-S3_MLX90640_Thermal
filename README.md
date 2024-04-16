@@ -18,6 +18,8 @@ The design files are all available if you would like to assemble your own of cha
 
 **Where do I get a battery?**  <br/>
 **-Source a 300mAh to 500mAh LiPo with a 1.25mm battery from Aliexpress. Just make sure the positive and negative wires are in the correct locations. If not, they can be removed by lifting the tab and swapping around** <br/>
+<br/>
+<br/>
 
 
 ![Hand](https://github.com/mike-rankin/ESP32-S3_MLX90640_Thermal/assets/4991664/ba3d8526-d287-444c-90c5-280552fa3a73) <br/>
