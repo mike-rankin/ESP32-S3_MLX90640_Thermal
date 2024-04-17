@@ -28,6 +28,11 @@ Two right angle pushbuttons are on one side if needed and two small vertical one
 **Why does my battery never charge?<br/>**
 **-The charger cannot power the board and charge the battery at the same time. To properly charge the battery turn the device off and leave the USB-C plugged in. The red light will go off once charged<br/>**
 <br/>
+**Why is this often out of stock?<br/>**
+**Each board is hand assembled using a hot plate and hot air wand. Parts are usually purchased in small quantities in case it does not sell. Proper testing, packaging and hardware debugging takes time<br/>**
+<br/>
+**Do you offer custom designs?<br/>**
+**Yes if time allows. Hardware prototype design is my full time job with hobby projects as a fun evening adventure<br/>**
 (https://youtube.com/shorts/amKmFCEE5ls?si=_cqpdNFftW1ooPPc") <br/>
 <br/>
 
